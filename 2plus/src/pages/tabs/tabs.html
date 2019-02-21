@@ -1,0 +1,15 @@
+
+<ion-header>
+  <ion-navbar>
+    <!--<ion-title>tabs</ion-title>-->
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-tabs>
+    <ion-tab [show]="!mediaProvider.hasLoggedIn" tabIcon="md-log-in" tabTitle="Login" [root]="LoginPage"></ion-tab>
+    <ion-tab [show]="mediaProvider.hasLoggedIn" tabIcon="home" tabTitle="Home" [root]="HomePage"></ion-tab>
+    <ion-tab [show]="mediaProvider.hasLoggedIn" tabIcon="person" tabTitle="Profile" [root]="ProfilePage"></ion-tab>
+  </ion-tabs>
+
+</ion-content>

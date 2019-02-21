@@ -1,0 +1,37 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="card-background-page">
+
+  <ion-card>
+    <!--<img [src]="uploadUrl + ('profile' | getTags | async| thumbnail:'large' | async)"/>-->
+
+    <div class="card-title">
+      <!--username: {{userAuth.user.username}}-->
+    </div>
+    <!--<div class="card-subtitle">
+      {{ mediaProvider.user.full_name}}
+    </div>-->
+    <div class="card-subtitle">
+      <!--email: {{userAuth.user.email}}-->
+    </div>
+
+  </ion-card>
+
+  <div  text-center>
+    <button ion-button round default *ngIf="mediaProvider.hasLoggedIn"
+            (click)="goToMyFiles()" color="primary"> My Files </button>
+
+  </div>
+
+  <div  text-center>
+    <button ion-button round default outline color="danger" item-start="end" (click)="logout()">Logout</button>
+  </div>
+</ion-content>
