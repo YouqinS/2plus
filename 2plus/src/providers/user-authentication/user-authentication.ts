@@ -6,10 +6,14 @@ import { LoginResponse } from '../../interfaces/loginResponse';
 @Injectable()
 export class UserAuthenticationProvider {
   user:User;
+  public hasLoggedIn:Boolean = false;
 
   constructor(public http: HttpClient) {
     //console.log('Hello UserAuthenticationProvider Provider');
   }
+
+
+
 
   login(user:User){
     const loginPath:string = "http://media.mw.metropolia.fi/wbma/login";
@@ -20,6 +24,9 @@ export class UserAuthenticationProvider {
   };
     return this.http.post<LoginResponse>(loginPath, user, httpOptions);
   }
+
+
+
 
   checkUsername(username){
     const checkUsernamePath:string = "http://media.mw.metropolia.fi/wbma/users/username/"+username;

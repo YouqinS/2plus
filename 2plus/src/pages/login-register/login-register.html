@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar>
     <ion-title>login/register</ion-title>
@@ -12,26 +11,33 @@
         <ion-list>
 
           <ion-label stacked text-center>Username</ion-label>
-          <ion-input stacked text-center type="text" placeholder="Username" name="username" [(ngModel)]="user.username" required></ion-input>
+          <ion-input stacked text-center type="text" placeholder="Username" name="username" [(ngModel)]="user.username"
+                     required></ion-input>
 
           <ion-label stacked text-center>Password</ion-label>
-          <ion-input type="password" text-center placeholder="Password" name="password" [(ngModel)]="user.password" required></ion-input>
+          <ion-input type="password" text-center placeholder="Password" name="password" [(ngModel)]="user.password"
+                     required></ion-input>
 
         </ion-list>
       </ion-col>
     </ion-row>
 
     <div text-center>
-      <button ion-button round default class="submit-btn" type="submit" [disabled]="!loginForm.form.valid">Login</button>
+      <button ion-button round default class="submit-btn" type="submit" [disabled]="!loginForm.form.valid">Login
+      </button>
     </div>
 
   </form>
 
-  <div text-center *ngIf="!showRegisterForm">
-    <button ion-button class="register-btn" clear round (click)="showLoginFormOrRegisterForm()">Create new account</button>
+  <div text-center *ngIf="!showRegisterForm" >
+    <button ion-button
+            class="register-btn" clear round
+            style="color: deeppink"
+            (click)="showLoginFormOrRegisterForm()">Create new account
+    </button>
   </div>
 
-  <form *ngIf="showRegisterForm" (ngSubmit)="register()" name="registerForm" #registerForm="ngForm" id="registerForm"> <!--[hidden]="!showRegisterForm"-->
+  <form *ngIf="showRegisterForm" (ngSubmit)="register()" name="registerForm" #registerForm="ngForm" id="registerForm">
 
     <ion-list>
       <div class="form-group">
@@ -50,7 +56,8 @@
                    (ionBlur)="checkUsername()"></ion-input>
         <div class="form-control-feedback" text-center
              *ngIf="username.errors && (username.dirty || username.touched)">
-          <p *ngIf="username.errors">Username is required and needs to be at least 3 letters (no numbers or special characters)</p>
+          <p *ngIf="username.errors">Username is required and needs to be at least 3 letters (no numbers or special
+            characters)</p>
         </div>
 
       </div>
@@ -67,7 +74,7 @@
                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                    [(ngModel)]="user.email"
                    #email="ngModel"
-                   required ></ion-input>
+                   required></ion-input>
         <div class="form-control-feedback" text-center
              *ngIf="email.errors && (email.dirty || email.touched)">
           <p *ngIf="email.errors">Email format: characters@characters.domain</p>
@@ -90,7 +97,8 @@
         </ion-input>
         <div class="form-control-feedback" text-center
              *ngIf="password.errors && (password.dirty || password.touched)">
-          <p *ngIf="password.errors">Password needs to be at least 8 characters containing at least one number, one uppercase and lowercase letter</p>
+          <p *ngIf="password.errors">Password needs to be at least 8 characters containing at least one number, one
+            uppercase and lowercase letter</p>
         </div>
 
       </div>
@@ -107,14 +115,22 @@
     </ion-list>
 
     <div text-center>
-        <button ion-button class="submit-btn" round type="submit" [disabled]="!registerForm.form.valid">Register</button>
+      <button ion-button class="submit-btn" round type="submit" [disabled]="!registerForm.form.valid">Register</button>
     </div>
   </form>
 
 
+  <div text-center *ngIf="showRegisterForm">
+    <button ion-button class="register-btn" clear round
+            style="color: deeppink"
+            (click)="showLoginFormOrRegisterForm()">already have an account?
+    </button>
+  </div>
 
-  <div text-center *ngIf="showRegisterForm"> <!--[hidden]="showRegisterForm"-->
-    <button ion-button class="register-btn" clear round (click)="showLoginFormOrRegisterForm()">already have an account ?</button>
+  <div text-center>
+    <button ion-button clear round
+            style="color: #0000e0"
+            (click)="goToHomePage()">Continue as guest user</button>
   </div>
 
 </ion-content>

@@ -4,6 +4,8 @@ import { MediaProvider } from '../../providers/media/media';
 import { HomePage } from '../home/home';
 import { LoginRegisterPage } from '../login-register/login-register';
 import { ProfilePage } from '../profile/profile';
+import { UserAuthenticationProvider } from '../../providers/user-authentication/user-authentication';
+import { User } from '../../interfaces/user';
 
 @IonicPage()
 @Component({
@@ -13,7 +15,11 @@ import { ProfilePage } from '../profile/profile';
 export class TabsPage {
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider:MediaProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public userAuth:UserAuthenticationProvider,
+              public mediaProvider:MediaProvider)
+  {
     this.LoginRegisterPage = LoginRegisterPage;
     this.HomePage = HomePage;
     this.ProfilePage = ProfilePage;
@@ -23,10 +29,23 @@ export class TabsPage {
   HomePage: any;
   ProfilePage: any;
 
+  ngOnInit() {
+    this.checkToken();
+  }
+
   ionViewDidLoad() {
     //console.log('ionViewDidLoad TabsPage');
-    if(this.mediaProvider.hasLoggedIn == false){
-      this.navCtrl.push(LoginRegisterPage);
+  }
+
+
+  public checkToken(){
+    console.log('token: ', localStorage.getItem('token'));
+    if (localStorage.getItem('token') !== null) {
+      this.userAuth.checkToken().subscribe((user: User) => {
+        this.userAuth.user = user;
+        console.log(user.username + " / " + user.user_id);
+        this.userAuth.hasLoggedIn = true;
+      });
     }
   }
 

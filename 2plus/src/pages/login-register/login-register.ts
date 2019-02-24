@@ -4,14 +4,6 @@ import { User } from '../../interfaces/user';
 import { UserAuthenticationProvider } from '../../providers/user-authentication/user-authentication';
 import { MediaProvider } from '../../providers/media/media';
 import { HomePage } from '../home/home';
-import { TabsPage } from '../tabs/tabs';
-
-/**
- * Generated class for the LoginRegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,17 +12,18 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginRegisterPage {
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public userAuth:UserAuthenticationProvider,
-              public mediaProvider:MediaProvider,
-              ) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public userAuth: UserAuthenticationProvider,
+    public mediaProvider: MediaProvider,
+  ) {
   }
 
-  showRegisterForm=false;
-  user:User={};
+  showRegisterForm = false;
+  user: User = {};
   confirm_password: any;
-  public token:string;
+  public token: string;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginRegisterPage');
@@ -43,52 +36,55 @@ export class LoginRegisterPage {
   }
 
   //user login
+
+  //TODO: SHOW LOGIN ERROR MESSAGE
   login() {
-    this.userAuth.login(this.user).subscribe(loginRes=>{
+    this.userAuth.login(this.user).subscribe(loginRes => {
       console.log('login res: ', loginRes);
 
-      if(loginRes.message === 'Logged in successfully'){
+      if (loginRes) {
 
         localStorage.setItem('token', loginRes.token);
         this.token = localStorage.getItem('token');
         console.log('login token', this.token);
 
-        this.mediaProvider.hasLoggedIn=true;
+        this.userAuth.hasLoggedIn = true;
         this.mediaProvider.presentToast(loginRes.message);
-        this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.push(HomePage);
+        //this.navCtrl.setRoot(TabsPage);
       }
-    })
+    });
 
   }
 
 //check if a username already exists
   checkUsername() {
-    this.userAuth.checkUsername(this.user.username).subscribe(res=>{
+    this.userAuth.checkUsername(this.user.username).subscribe(res => {
       console.log('check username availability res: ', res);
-      if(res['available'] !== true){
+      if (res['available'] !== true) {
         alert('username is taken!');
       }
-    })
+    });
   }
 
-
   verifyPassword() {
-    if(this.user.password !== this.confirm_password){
-      alert("passwords do not match!");
+    if (this.user.password !== this.confirm_password) {
+      alert('passwords do not match!');
     }
   }
 
   register() {
-    this.userAuth.register(this.user).subscribe(resgisterRes=>{
+    this.userAuth.register(this.user).subscribe(resgisterRes => {
       console.log('resgister res: ', resgisterRes);
-      if(resgisterRes['message']=='User created successfully'){
+      if (resgisterRes['message'] == 'User created successfully') {
         this.mediaProvider.presentToast(resgisterRes['message']);
         this.login();
-       // this.navCtrl.setRoot(TabsPage);
+        // this.navCtrl.setRoot(TabsPage);
       }
-    })
+    });
   }
 
-
-
+  goToHomePage() {
+    this.navCtrl.push(HomePage);
+  }
 }

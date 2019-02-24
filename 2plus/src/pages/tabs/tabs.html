@@ -1,15 +1,20 @@
 
-<ion-header>
+<!--<ion-header>
   <ion-navbar>
-    <!--<ion-title>tabs</ion-title>-->
+    &lt;!&ndash;<ion-title>tabs</ion-title>&ndash;&gt;
   </ion-navbar>
-</ion-header>
+</ion-header>-->
 
 <ion-content padding>
   <ion-tabs>
-    <ion-tab [show]="!mediaProvider.hasLoggedIn" tabIcon="md-log-in" tabTitle="Login" [root]="LoginPage"></ion-tab>
-    <ion-tab [show]="mediaProvider.hasLoggedIn" tabIcon="home" tabTitle="Home" [root]="HomePage"></ion-tab>
-    <ion-tab [show]="mediaProvider.hasLoggedIn" tabIcon="person" tabTitle="Profile" [root]="ProfilePage"></ion-tab>
+    <ion-tab tabIcon="home" tabTitle="Home" [root]="HomePage"></ion-tab>
+
+    <ion-tab [show]="userAuth.hasLoggedIn" tabIcon="cloud-upload" tabTitle="Upload" [root]="UploadPage"></ion-tab>
+    <ion-tab [show]="userAuth.hasLoggedIn" tabIcon="list-box" tabTitle="My Items" [root]="MyItemsPage"></ion-tab>
+
+    <ion-tab [show]="!userAuth.hasLoggedIn" tabIcon="md-log-in" tabTitle="Login/Register" [root]="LoginRegisterPage"></ion-tab>
+    <ion-tab tabIcon="search" tabTitle="Search" [root]="SearchPage"></ion-tab>
+
   </ion-tabs>
 
 </ion-content>
