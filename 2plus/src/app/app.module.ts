@@ -13,6 +13,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { PipesModule } from '../pipes/pipes.module';
 import { MediaProvider } from '../providers/media/media';
 import { UserAuthenticationProvider } from '../providers/user-authentication/user-authentication';
+import { UploadPage } from '../pages/upload/upload';
+import { SearchPage } from '../pages/search/search';
+import { MyItemsPage } from '../pages/my-items/my-items';
+import { Chooser } from '@ionic-native/chooser';
+
+//import { Camera, CameraOptions } from "@ionic-native/camera";
+//import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
 
 @NgModule({
   declarations: [
@@ -20,13 +28,16 @@ import { UserAuthenticationProvider } from '../providers/user-authentication/use
     HomePage,
     TabsPage,
     LoginRegisterPage,
-    ProfilePage
+    ProfilePage,
+    UploadPage,
+    SearchPage,
+    MyItemsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    PipesModule
+    PipesModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,14 +45,18 @@ import { UserAuthenticationProvider } from '../providers/user-authentication/use
     HomePage,
     TabsPage,
     LoginRegisterPage,
-    ProfilePage
+    ProfilePage,
+    UploadPage,
+    SearchPage,
+    MyItemsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MediaProvider,
-    UserAuthenticationProvider
+    UserAuthenticationProvider,
+    Chooser
 
     ]
 })

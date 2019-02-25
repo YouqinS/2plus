@@ -6,6 +6,9 @@ import { LoginRegisterPage } from '../login-register/login-register';
 import { ProfilePage } from '../profile/profile';
 import { UserAuthenticationProvider } from '../../providers/user-authentication/user-authentication';
 import { User } from '../../interfaces/user';
+import { UploadPage } from '../upload/upload';
+import { MyItemsPage } from '../my-items/my-items';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -13,6 +16,13 @@ import { User } from '../../interfaces/user';
   templateUrl: 'tabs.html',
 })
 export class TabsPage {
+  LoginRegisterPage: any;
+  HomePage: any;
+  UploadPage;
+  MyItemsPage;
+  SearchPage;
+  ProfilePage: any;
+
 
 
   constructor(public navCtrl: NavController,
@@ -23,11 +33,11 @@ export class TabsPage {
     this.LoginRegisterPage = LoginRegisterPage;
     this.HomePage = HomePage;
     this.ProfilePage = ProfilePage;
+    this.UploadPage = UploadPage;
+    this.MyItemsPage = MyItemsPage;
+    this.SearchPage = SearchPage;
   }
 
-  LoginRegisterPage: any;
-  HomePage: any;
-  ProfilePage: any;
 
   ngOnInit() {
     this.checkToken();
