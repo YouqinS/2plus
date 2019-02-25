@@ -15,9 +15,12 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   selector: 'page-upload',
   templateUrl: 'upload.html',
 })
+
+
 export class UploadPage {
 
   constructor(private chooser:Chooser,
+              private camera:Camera,
               public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
@@ -44,11 +47,24 @@ export class UploadPage {
 
 
 
+  public chooseFile(){
+    this.chooser.getFile("image/*, video/!*, audio/!*")
+    .then(file => {
+      if(file){
+        console.log(file ? file.name : 'canceled');
+        console.log(file.dataURI);
+        console.log(file.mediaType);
+        //console.log(file.uri);
+        this.hasFile = true;
+        this.showPreview(file);
 
-  loading = this.loadingCtrl.create({
-    content: 'Uploading, please wait...',
-  });
+      }else {
+        alert("please choose a file to upload");
+      }
+    })
+    .catch((error: any) => console.error(error));
 
+  }
 
   showPreview(file) {
 
@@ -88,11 +104,12 @@ export class UploadPage {
     formData.append('title', this.title);
     console.log('title: ', this.title);
 
-    formData.append('description', description + filters);// + filters
+    formData.append('description', description + filters);
     console.log('description: ', description);
 
     //formData.append('file', this.file);
     formData.append('file', this.myBlob);
+    console.log('form data append, my blob: ', this.myBlob);
 
     this.mediaProvider.uploadMedia( formData).subscribe(response => {
 
@@ -118,25 +135,57 @@ export class UploadPage {
   }
 
 
-  public chooseFile(){
-    this.chooser.getFile("image/*, video/!*, audio/!*")
-    .then(file => {
-      if(file){
-        console.log(file ? file.name : 'canceled');
-        console.log(file.dataURI);
-        console.log(file.mediaType);
-        //console.log(file.uri);
+  loading = this.loadingCtrl.create({
+    content: 'Uploading, please wait...',
+  });
+
+
+
+  useCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      if(imageData){
+
+        console.log('image data: ', imageData);
+        this.filedata = 'data:image/jpeg;base64,' + imageData;
         this.hasFile = true;
-        this.showPreview(file);
-
-      }else {
-        alert("please choose a file to upload");
+        this.dataURItoBlob(imageData);
       }
-    })
-    .catch((error: any) => console.error(error));
 
+    }, (err) => {
+      // Handle error
+      console.log("Camera issue: " + err);
+    });
   }
 
+  dataURItoBlob(dataURI) {
+    var byteString, mimestring;
+
+    if(dataURI.split(',')[0].indexOf('base64') !== -1 ) {
+      byteString = atob(dataURI.split(',')[1])
+    } else {
+      byteString = decodeURI(dataURI.split(',')[1])
+    }
+
+    mimestring = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    let content = [];
+    for (let i = 0; i < byteString.length; i++) {
+      content[i] = byteString.charCodeAt(i)
+    }
+
+    this.myBlob = new Blob([new Uint8Array(content)], {type: mimestring});
+    console.log('dataURI to blob, my blob: ', this.myBlob);
+    return this.myBlob;
+  }
 
 
 
@@ -146,6 +195,5 @@ export class UploadPage {
     this.filedata='';
     this.isImage=false;
   }
-
 
 }

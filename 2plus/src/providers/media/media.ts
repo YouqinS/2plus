@@ -41,18 +41,9 @@ export class MediaProvider {
 
 
 
-
-  presentToast(message) {
-    let toast = this.toastCtrl.create({
-      message: message,
-      duration: 2000
-    });
-    toast.present();
-  }
-
   //upload media file
   public uploadMedia(data:any){
-    console.log('upload media ?');
+    console.log('media provider: upload media');
 
     let accessToken = localStorage.getItem('token');
     console.log('accessToken: ', accessToken);
@@ -65,4 +56,16 @@ export class MediaProvider {
     const uploadPath:string = "http://media.mw.metropolia.fi/wbma/media";
     return this.http.post<LoginResponse>(uploadPath, data, httpOptions);
   }
+
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
 }
+
+
+

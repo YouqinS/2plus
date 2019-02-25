@@ -17,9 +17,7 @@ import { UploadPage } from '../pages/upload/upload';
 import { SearchPage } from '../pages/search/search';
 import { MyItemsPage } from '../pages/my-items/my-items';
 import { Chooser } from '@ionic-native/chooser';
-
-//import { Camera, CameraOptions } from "@ionic-native/camera";
-//import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera';
 
 
 @NgModule({
@@ -56,8 +54,8 @@ import { Chooser } from '@ionic-native/chooser';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MediaProvider,
     UserAuthenticationProvider,
-    Chooser
-
+    Chooser,
+    Camera
     ]
 })
 export class AppModule {}
