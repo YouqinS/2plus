@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UserAuthenticationProvider } from '../../providers/user-authentication/user-authentication';
 import { User } from '../../interfaces/user';
 import { LoginRegisterPage } from '../login-register/login-register';
+import { SingleItemPage } from '../single-item/single-item';
 
 @Component({
   selector: 'page-home',
@@ -30,6 +31,9 @@ export class HomePage {
 
 
   viewBiggerImg(file_id: number) {
+    this.navCtrl.push(SingleItemPage,{
+      file_id: file_id
+    })
 
   }
 

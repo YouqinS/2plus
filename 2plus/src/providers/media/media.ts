@@ -36,7 +36,17 @@ export class MediaProvider {
   }
 
 
+  getUserInfoOfSingleFile(user_id){
+    const userInfoPath:string = "http://media.mw.metropolia.fi/wbma/users/"+user_id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'x-access-token': localStorage.getItem('token'),
+      })
+    };
+    return this.http.get<User>(userInfoPath, httpOptions);
 
+  }
 
 
 

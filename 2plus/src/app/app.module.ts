@@ -18,7 +18,8 @@ import { SearchPage } from '../pages/search/search';
 import { MyItemsPage } from '../pages/my-items/my-items';
 import { Chooser } from '@ionic-native/chooser';
 import { Camera } from '@ionic-native/camera';
-
+import { SingleItemPage } from '../pages/single-item/single-item';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { Camera } from '@ionic-native/camera';
     LoginRegisterPage,
     ProfilePage,
     UploadPage,
+    SingleItemPage,
     SearchPage,
     MyItemsPage
   ],
@@ -36,6 +38,7 @@ import { Camera } from '@ionic-native/camera';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     PipesModule,
+    PinchZoomModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,6 +48,7 @@ import { Camera } from '@ionic-native/camera';
     LoginRegisterPage,
     ProfilePage,
     UploadPage,
+    SingleItemPage,
     SearchPage,
     MyItemsPage
   ],
