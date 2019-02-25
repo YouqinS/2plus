@@ -20,6 +20,7 @@ import { Chooser } from '@ionic-native/chooser';
 import { Camera } from '@ionic-native/camera';
 import { SingleItemPage } from '../pages/single-item/single-item';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { UpdateItemPage } from '../pages/update-item/update-item';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     ProfilePage,
     UploadPage,
     SingleItemPage,
+    UpdateItemPage,
     SearchPage,
     MyItemsPage
   ],
@@ -50,7 +52,8 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     UploadPage,
     SingleItemPage,
     SearchPage,
-    MyItemsPage
+    MyItemsPage,
+    UpdateItemPage
   ],
   providers: [
     StatusBar,
