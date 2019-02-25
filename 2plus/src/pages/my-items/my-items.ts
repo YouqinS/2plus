@@ -57,7 +57,6 @@ export class MyItemsPage {
   }
 
 
-  //TODO: REFRESH PAGE AFTER FILE DELETED
   deleteFile(file_id: number) {
     this.mediaProvider.confirmationAlert('Do you really want to delete the file?').then(confirm => {
       if (confirm) {
@@ -65,6 +64,7 @@ export class MyItemsPage {
         this.mediaProvider.deleteFile(file_id).subscribe(deleteRes=>{
           console.log('delete file response: ', deleteRes);
           this.mediaProvider.presentToast(deleteRes.message);
+          this.navCtrl.push(MyItemsPage);
         })
 
       } else {

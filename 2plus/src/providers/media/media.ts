@@ -122,6 +122,23 @@ export class MediaProvider {
     });
     toast.present();
   }
+
+  updateItemInfo(file_id, data:any){
+    console.log('media provider: modify media info');
+
+    const modifyFilePath:string = "http://media.mw.metropolia.fi/wbma/media/"+file_id;
+    let accessToken = localStorage.getItem('token');
+    console.log('accessToken: ', accessToken);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'x-access-token': accessToken
+      }),
+    };
+    return this.http.put<LoginResponse>(modifyFilePath, data, httpOptions);
+
+  }
 }
 
 
