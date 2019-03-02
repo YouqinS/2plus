@@ -9,6 +9,7 @@ import { User } from '../../interfaces/user';
 import { UploadPage } from '../upload/upload';
 import { MyItemsPage } from '../my-items/my-items';
 import { SearchPage } from '../search/search';
+import { MenuPage } from '../menu/menu';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,7 @@ export class TabsPage {
   MyItemsPage;
   SearchPage;
   ProfilePage: any;
+  MenuPage:any;
 
 
 
@@ -36,6 +38,7 @@ export class TabsPage {
     this.UploadPage = UploadPage;
     this.MyItemsPage = MyItemsPage;
     this.SearchPage = SearchPage;
+    this.MenuPage = MenuPage;
   }
 
 

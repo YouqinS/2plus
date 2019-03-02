@@ -21,6 +21,7 @@ import { Camera } from '@ionic-native/camera';
 import { SingleItemPage } from '../pages/single-item/single-item';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { UpdateItemPage } from '../pages/update-item/update-item';
+import { MenuPage } from '../pages/menu/menu';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UpdateItemPage } from '../pages/update-item/update-item';
     SingleItemPage,
     UpdateItemPage,
     SearchPage,
-    MyItemsPage
+    MyItemsPage,
+    MenuPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { UpdateItemPage } from '../pages/update-item/update-item';
     SingleItemPage,
     SearchPage,
     MyItemsPage,
-    UpdateItemPage
+    UpdateItemPage,
+    MenuPage
   ],
   providers: [
     StatusBar,
